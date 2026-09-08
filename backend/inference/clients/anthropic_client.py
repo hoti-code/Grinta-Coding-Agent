@@ -12,8 +12,6 @@ from backend.inference.clients.base import (
     LLMResponse,
     _normalize_timeout_seconds,
     _with_default_timeout,
-    get_shared_async_http_client,
-    get_shared_http_client,
 )
 from backend.inference.providers.anthropic_ops import (
     acompletion as _anthropic_acompletion,
@@ -50,12 +48,10 @@ class AnthropicClient(DirectLLMClient):
         self.client = Anthropic(
             api_key=api_key,
             base_url=base_url,
-            http_client=get_shared_http_client(provider_name, base_url),
         )
         self.async_client = AsyncAnthropic(
             api_key=api_key,
             base_url=base_url,
-            http_client=get_shared_async_http_client(provider_name, base_url),
         )
 
     @staticmethod
