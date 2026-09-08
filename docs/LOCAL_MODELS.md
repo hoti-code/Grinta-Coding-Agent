@@ -49,10 +49,12 @@ endpoint. Change the URL when LM Studio uses a non-default port.
 - The server must implement OpenAI-compatible `/v1/models` and
   `/v1/chat/completions` endpoints.
 - Configure the model's real context window. Grinta reserves 4,096 tokens for
-  output and protocol overhead, so an 8K context is a practical minimum for
-  small tasks; 16K or more is preferable for repository work.
-- Native tool calling is optional. Models without it use Grinta's text fallback,
-  but they must follow the injected tool syntax reliably to perform actions.
+  protocol overhead in addition to the output budget, so an 8K context is a
+  practical minimum for small tasks; 16K or more is preferable for repository
+  work.
+- Native tool calling is optional for plain-text responses. To perform actions,
+  the model must either support OpenAI-style tool calls or use Grinta's text
+  fallback and follow its injected tool syntax reliably.
 - Streaming is optional. The same model must return at least one completion
   choice in non-streaming mode.
 
