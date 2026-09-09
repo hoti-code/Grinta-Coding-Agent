@@ -105,7 +105,7 @@ def test_lm_studio_stream_preserves_terminal_finish_reason(monkeypatch) -> None:
     llm = MagicMock()
     llm.astream = fake_astream
     llm.model = chunks[0]['model']
-    llm.config.model = f'lm-studio/{chunks[0]["model"]}'
+    llm.config.model = f'lm_studio/{chunks[0]["model"]}'
     safety_manager = MagicMock()
     safety_manager.apply.side_effect = lambda _content, actions: (True, actions)
     executor = OrchestratorExecutor(
